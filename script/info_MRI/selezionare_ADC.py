@@ -5,7 +5,10 @@ Spyder Editor
 This is a temporary script file.
 """
 
-#voglio separare i volumi delle ADC dai volumi dei gradienti
+
+#script che separa e salva i volumi contenenti le ADC dai volumi contenenti i gradienti nelle DWI
+
+
 
 import pandas as pd
 import nibabel as nib
@@ -13,7 +16,8 @@ import numpy as np
 import glob
 import os
 
-path_main = '/home/leonardo/Scrivania/TESI/MRI_DWI_nii'
+
+path_main = '/home/leonardo/Scrivania/TESI/dati/MRI_DWI_nii'
 
 path_folder_DWI_list = glob.glob(path_main + '/*/*')
 
