@@ -27,7 +27,7 @@ path_img_ADC_list = [i for i in path_DWI_list if 'ADC_' in i]
   
 for patient in patient_list:
 
-    dst = f'{path_output_DWI}/{patient}'
+    dst = f'{path_output_ADC}/{patient}'
 
     for src in path_img_ADC_list:
         

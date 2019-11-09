@@ -6,14 +6,15 @@ Created on Fri Nov  8 15:45:58 2019
 @author: leonardo
 """
 
-#preparare file per la registrazione, creare una cartella con ADC_nii e una con CT e strutture
+#preparare file per la registrazione, creare una cartella con ADC_1.nii ADC_2.nii 
+#per creare cartella di tipo _2
+
 import os
 import glob
 from shutil import copyfile
 
 
-#creare cartella con ADC
-path_output_DWI = '/home/leonardo/Scrivania/CT_DWI_registration/ADC'  
+path_output_ADC = '/home/leonardo/Scrivania/CT_ADC_DOSE_MASK_registration_2'  
 path_DWI_input = '/home/leonardo/Scrivania/TESI/dati/MRI_DWI_nii'
 
 patient_list = os.listdir(path_DWI_input) 
@@ -24,11 +25,11 @@ path_DWI_list = glob.glob(path_DWI_input + '/*/*/*')
 path_img_ADC_list = [i for i in path_DWI_list if 'ADC_' in i]
 
 #for patient in patient_list:
-#    os.makedirs(f'{path_output_DWI}/{patient}')
+#    os.makedirs(f'{path_output_ADC}/{patient}')
   
 for patient in patient_list:
 
-    dst = f'{path_output_DWI}/{patient}'
+    dst = f'{path_output_ADC}/{patient}'
 
     for src in path_img_ADC_list:
         
