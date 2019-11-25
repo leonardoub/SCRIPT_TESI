@@ -40,7 +40,7 @@ def EstrattoreFeaturesADC(path_list, number_of_bin):
         
         bin_Width = (Max-Min)/number_of_bin
                 
-        extractor = featureextractor.RadiomicsFeatureExtractor(bW=bin_Width, correctMask=True)
+        extractor = featureextractor.RadiomicsFeatureExtractor(binWidth=bin_Width, correctMask=True)
         result = extractor.execute(Imagestk, Maskstk)
     
     

@@ -27,7 +27,7 @@ def EstrattoreFeaturesADC(path_list, bin_Width):
         Maskstk = sitk.ReadImage(Mask_path)
         Imagestk = sitk.ReadImage(Image_path)    
             
-        extractor = featureextractor.RadiomicsFeatureExtractor(bW=bin_Width, correctMask=True)
+        extractor = featureextractor.RadiomicsFeatureExtractor(binWidth=bin_Width, correctMask=True)
         result = extractor.execute(Imagestk, Maskstk)
     
     
