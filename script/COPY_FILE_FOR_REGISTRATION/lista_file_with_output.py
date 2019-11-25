@@ -24,7 +24,8 @@ def make_parser():
     parser.add_argument("input", help="Input top folder")
     parser.add_argument("--adc", help="Ending of ADC files: ADC_1.nii", default=adc_end)
     parser.add_argument("--ct", help="Ending of CT files: CT.nii", default=ct_end)
-    parser.add_argument("output", help="Output filename")
+    parser.add_argument("folder_path_output_extracion", help="Where you want to save the result of extraction of features")
+    parser.add_argument("output", help="Output filename, where you want to save the list")
     return parser
 
 def create_list(folder, ending):
@@ -45,10 +46,19 @@ def create_ct_paths(adc_list, ending):
         filenames.append(filename)
     return filenames
 
-def create_txt(filename, adc_list, ct_list):
+def create_output_list_path(adc_list, folder_path_extraction):
+    output_list_path = []
+    for filename in adc_list:
+        folder_patient = filename.split(os.sep)[-3]
+        full_path_output = os.path.join(folder_path_extraction, folder_patient + '.csv')
+        output_list_path.append(full_path_output)
+    return output_list_path
+        
+
+def create_txt(filename, adc_list, ct_list, output_list):
     with open(filename, 'w') as file_:
-        for adc, ct in zip(adc_list, ct_list):
-            file_.write("{} {}\n".format(adc, ct))
+        for adc, ct, output in zip(adc_list, ct_list, output_list):
+            file_.write("{} {} {}\n".format(adc, ct, output))
 
 if __name__ == "__main__":
     PARSER = make_parser()
@@ -56,4 +66,5 @@ if __name__ == "__main__":
     
     ADC = create_list(ARGS.input, ARGS.adc)
     CT = create_ct_paths(ADC, ARGS.ct)
-    create_txt(ARGS.output, ADC, CT)
+    OUTPUT = create_output_list_path(ADC, ARGS.folder_path_output_extracion)
+    create_txt(ARGS.output, ADC, CT, OUTPUT)
