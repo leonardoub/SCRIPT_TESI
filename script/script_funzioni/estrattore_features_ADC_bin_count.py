@@ -11,6 +11,7 @@ import SimpleITK as sitk
 import argparse
 import pandas as pd
 
+radiomics.setVerbosity(10)
 
 def EstrattoreFeaturesADC(path_list, bin_Count):
     
@@ -45,6 +46,8 @@ if __name__=="__main__":
                     help='the path of list of path')
     parser.add_argument('bin_count', type=int, 
                     help='number if the bin of the istogram. Must be between 30 and 130')
+    parser.add_argument('-v', '--verbosity', type=int,
+                        choices=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], default=0, help='increase verbosity of the output')
     args = parser.parse_args()           
 
     EstrattoreFeaturesADC(args.path_list_path, args.bin_count)
