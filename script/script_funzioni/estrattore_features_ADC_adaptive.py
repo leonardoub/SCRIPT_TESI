@@ -11,9 +11,13 @@ from radiomics import featureextractor
 import SimpleITK as sitk
 import argparse
 import pandas as pd
+import numpy as np
 
 
-def EstrattoreFeaturesADC(path_list, bin_Count):
+#radiomics.setVerbosity(10)
+
+
+def EstrattoreFeaturesADC(path_list, number_of_bin):
     
     list_path = [line.split() for line in open(path_list, 'r')]
     
@@ -25,9 +29,18 @@ def EstrattoreFeaturesADC(path_list, bin_Count):
         Image_path = list_path[i][0]
     
         Maskstk = sitk.ReadImage(Mask_path)
-        Imagestk = sitk.ReadImage(Image_path)    
-            
-        extractor = featureextractor.RadiomicsFeatureExtractor(binCount=bin_Count, correctMask=True)
+        Imagestk = sitk.ReadImage(Image_path)  
+
+        
+        Imagestk_np = sitk.GetArrayFromImage(Imagestk)
+        Maskstk_np = sitk.GetArrayFromImage(Maskstk) 
+        Imagestk_np_with_mask = Imagestk_np*Maskstk_np
+        Max = np.max(Imagestk_np_with_mask)
+        Min = np.min(Imagestk_np_with_mask)
+        
+        bin_Width = (Max-Min)/number_of_bin
+                
+        extractor = featureextractor.RadiomicsFeatureExtractor(bW=bin_Width, correctMask=True)
         result = extractor.execute(Imagestk, Maskstk)
     
     
@@ -44,15 +57,15 @@ if __name__=="__main__":
     parser = argparse.ArgumentParser(description=descr)
     parser.add_argument('path_list_path', type=str,
                     help='the path of list of path')
-    parser.add_argument('bin_count', type=int, 
-                    help='number if the bin of the istogram. Must be between 30 and 130')
+    parser.add_argument('bin_number', type=int, 
+                    help='bin number of the istogram. Number of bins must be between 30 and 130')
     parser.add_argument('-v', '--verbosity', type=int,
                         choices=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], default=0, help='increase verbosity of the output')
     args = parser.parse_args()           
 
     radiomics.setVerbosity(args.verbosity)
 
-    EstrattoreFeaturesADC(args.path_list_path, args.bin_count)
+    EstrattoreFeaturesADC(args.path_list_path, args.bin_number)
        
     
     
