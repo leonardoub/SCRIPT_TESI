@@ -6,6 +6,7 @@ Created on Fri Nov 22 19:36:48 2019
 @author: leonardo
 """
 
+import radiomics
 from radiomics import featureextractor
 import SimpleITK as sitk
 import argparse
