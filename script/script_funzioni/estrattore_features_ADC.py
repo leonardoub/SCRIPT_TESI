@@ -6,6 +6,7 @@ Created on Fri Nov 22 19:36:48 2019
 @author: leonardo
 """
 
+import radiomics
 from radiomics import featureextractor
 import SimpleITK as sitk
 import argparse
@@ -45,7 +46,11 @@ if __name__=="__main__":
                     help='the path of list of path')
     parser.add_argument('bin_width', type=int, 
                     help='binwidth of the istogram. Number of bins between 30 and 130')
-    args = parser.parse_args()           
+    parser.add_argument('-v', '--verbosity', type=int,
+                        choices=[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10], default=0, help='increase verbosity of the output')
+    args = parser.parse_args() 
+
+    radiomics.setVerbosity(args.verbosity)              
 
     EstrattoreFeaturesADC(args.path_list_path, args.bin_width)
        
