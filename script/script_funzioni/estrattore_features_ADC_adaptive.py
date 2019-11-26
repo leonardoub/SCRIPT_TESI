@@ -14,9 +14,6 @@ import pandas as pd
 import numpy as np
 
 
-#radiomics.setVerbosity(10)
-
-
 def EstrattoreFeaturesADC(path_list, number_of_bin):
     
     list_path = [line.split() for line in open(path_list, 'r')]
@@ -27,6 +24,11 @@ def EstrattoreFeaturesADC(path_list, number_of_bin):
         Output_path = list_path[i][2]
         Mask_path = list_path[i][1]
         Image_path = list_path[i][0]
+        
+        print(Output_path)
+        print(Mask_path)
+        print(Image_path)
+
     
         Maskstk = sitk.ReadImage(Mask_path)
         Imagestk = sitk.ReadImage(Image_path)  
