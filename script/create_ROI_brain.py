@@ -10,7 +10,7 @@ import numpy as np
 import SimpleITK as sitk
 
 
-Mask_path='/home/leonardo/Scrivania/data_registered/Patient06/MASK_TOT.nii'
+Mask_path='/home/leonardo/Scrivania/data_registered/Patient52/MASK_TOT.nii'
 Maskstk=sitk.ReadImage(Mask_path)
 
 
@@ -27,17 +27,27 @@ Masknp=sitk.GetArrayFromImage(Maskstk)
 
 num_slices = Masknp.shape[0]
 
-for z in range(num_slices):
-    A = sum(Masknp[:,:,z])
-    print(A)
-    
-    
-    
-    
+A = Masknp.sum(axis=(1,2)) #non c'è bisogno di un ciclo for sulle slices, lo fa da solo
+
+
+indices = np.where(A >= 600)
+
+
+#mask = [A[i]!=0 and A[i+10]-A[i]>=A[i] for i in range(num_slices)]
+#indices = np.where(A >= 600)
+
+
+index = indices[0][0]
+
+Masknp[:,:,:index] = 0
+
+B = Masknp.sum(axis=(1,2))
 
 
 
-
+for value in A:
+    if value>400:
+        in
 
 
 
