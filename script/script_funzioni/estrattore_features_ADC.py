@@ -23,7 +23,12 @@ def EstrattoreFeaturesADC(path_list, bin_Width):
         Output_path = list_path[i][2]
         Mask_path = list_path[i][1]
         Image_path = list_path[i][0]
-    
+        
+        print(Output_path)
+        print(Mask_path)
+        print(Image_path)
+        
+      
         Maskstk = sitk.ReadImage(Mask_path)
         Imagestk = sitk.ReadImage(Image_path)    
             
