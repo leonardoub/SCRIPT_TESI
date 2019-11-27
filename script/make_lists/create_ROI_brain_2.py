@@ -17,8 +17,8 @@ def Mask_Cutter(path_list):
     
     for i in range(len(list_path)):
         
-        Output_path = list_path[i][1]
-        Mask_path = list_path[i][0]
+        Output_path = list_path[i][2]
+        Mask_path = list_path[i][1]
         
         print(Output_path)
         print(Mask_path)
@@ -40,16 +40,16 @@ def Mask_Cutter(path_list):
         
         A = Masknp.sum(axis=(1,2)) #non c'è bisogno di un ciclo for sulle slices, lo fa da solo
         
-        #selezione a soglia
-        indices = np.where(A >= 450)
+        ##selezione a soglia
+        #indices = np.where(A >= 600)
+        #index = indices[0][0]
+        
+        mask = [A[i]>A[i-1]>A[i-2]>A[i-3]>A[i-4]>A[i-5]>A[i-6]>A[i-7]>A[i-8]>A[i-9]>A[i-10] for i in range(num_slices)]
+        B = A[mask]
+        
+        indices = np.where(A >= B[0])
         index = indices[0][0]
         
-#        mask = [A[i]>A[i-1]>A[i-2]>A[i-3]>A[i-4]>A[i-5]>A[i-6]>A[i-7]>A[i-8]>A[i-9]>A[i-10] for i in range(num_slices)]
-#        B = A[mask]
-#        
-#        indices = np.where(A >= B[0])
-#        index = indices[0][0]
-#        
         Masknp[:index,:,:] = 0
         
         ##serve per controllo
