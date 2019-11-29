@@ -10,7 +10,7 @@ import numpy as np
 import SimpleITK as sitk
 import argparse
 
-def Mask_Cutter(path_list):
+def Mask_Cutter(path_list, stp):
 
     list_path = [line.split() for line in open(path_list, 'r')]
     
@@ -44,7 +44,11 @@ def Mask_Cutter(path_list):
         #indices = np.where(A >= 600)
         #index = indices[0][0]
         
-        mask = [A[i]>A[i-1]>A[i-2]>A[i-3]>A[i-4]>A[i-5]>A[i-6]>A[i-7]>A[i-8]>A[i-9]>A[i-10] for i in range(num_slices)]
+#        mask = [A[i]>A[i-1]>A[i-2]>A[i-3]>A[i-4]>A[i-5]>A[i-6]>A[i-7]>A[i-8]>A[i-9]>A[i-10] for i in range(num_slices)]
+        
+        mask = [np.all(A[i-stp:i]==sorted(A[i-stp:i])) and A[i]!=0 for i in range(num_slices)]
+
+    
         B = A[mask]
         
         indices = np.where(A >= B[0])
@@ -67,9 +71,10 @@ if __name__=="__main__":
     descr = 'This program cut the CSI mask in order to obatain a Brain mask'
     parser = argparse.ArgumentParser(description=descr)
     parser.add_argument('path_of_path_list', type=str, help='Path of the list which contain 2 columns: first is about the path of CSI mask, the second is about the path where do you want to save the brain mask')
+    parser.add_argument('--step', type=int, help='Length of the step', default=10)
     args = parser.parse_args()
 
-    Mask_Cutter(args.path_of_path_list)    
+    Mask_Cutter(args.path_of_path_list, args.step)    
 
 
 
