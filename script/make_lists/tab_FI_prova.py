@@ -19,11 +19,16 @@ with open(json_path) as json_file:
 
 
 B = np.loadtxt(bvec_path)
+Bt = B.T
+sp = np.shape(Bt)[0]
+Bt_sp = np.vsplit(Bt, sp)
+
 
 C = np.loadtxt(bval_path) 
+Ct = C.T
 
-A.update({'bvec': B})
-A.update({'bval': C})
+A.update({'bvec': Bt_sp})
+A.update({'bval': Ct})
 
 
 

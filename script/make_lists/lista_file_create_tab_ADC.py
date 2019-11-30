@@ -62,6 +62,7 @@ if __name__ == "__main__":
     BVAL = create_list(ARGS.input, ARGS.bval)
     BVEC = create_list(ARGS.input, ARGS.bvec)
     JSON = create_list(ARGS.input, ARGS.json)
+    SAVING = 
     create_txt(ARGS.output, BVAL, BVEC, JSON)
     
     
