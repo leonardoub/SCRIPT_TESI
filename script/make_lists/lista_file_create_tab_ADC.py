@@ -18,14 +18,14 @@ def make_parser():
     """
     
     bval_file = "-a.bval"
-    bvec_file = "-a.bvec"
-    json_file ='-a.json'
+#    bvec_file = "-a.bvec"
+#    json_file ='-a.json'
     descr = 'build a file with three columns which containing path'
     parser = argparse.ArgumentParser(description=descr)
     parser.add_argument("input", help="Input top folder")
     parser.add_argument("--bval", help="Ending of bval files", default=bval_file)
-    parser.add_argument("--bvec", help="Ending of bvec files", default=bvec_file)
-    parser.add_argument("--json", help="Ending of json files", default=json_file)
+#    parser.add_argument("--bvec", help="Ending of bvec files", default=bvec_file)
+#    parser.add_argument("--json", help="Ending of json files", default=json_file)
     parser.add_argument("output", help="Output filename")
     return parser
 
@@ -48,10 +48,10 @@ def create_ct_paths(adc_list, ending):
         filenames.append(filename)
     return filenames
 
-def create_txt(filename, bval_list, bvec_list, json_list):
+def create_txt(filename, bval_list):
     with open(filename, 'w') as file_:
-        for bval, bvec, json_ in zip(bval_list, bvec_list, json_list):
-            file_.write("{} {} {}\n".format(bval, bvec, json_))
+        for bval in bval_list:
+            file_.write('{} \n'.format(bval))
 
 
 
@@ -60,11 +60,12 @@ if __name__ == "__main__":
     ARGS = PARSER.parse_args()
     
     BVAL = create_list(ARGS.input, ARGS.bval)
-    BVEC = create_list(ARGS.input, ARGS.bvec)
-    JSON = create_list(ARGS.input, ARGS.json)
-    SAVING = 
-    create_txt(ARGS.output, BVAL, BVEC, JSON)
+#    BVEC = create_list(ARGS.input, ARGS.bvec)
+#    JSON = create_list(ARGS.input, ARGS.json)
+    create_txt(ARGS.output, BVAL)
     
+    
+#non sono sicuro che venaga mantenuto lo stesso ordine chiamando più volte la funzione create_list
     
     
     
