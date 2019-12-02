@@ -10,18 +10,31 @@ import numpy as np
 import json 
 import pandas as pd
 
-json_path = '/home/leonardo/Scrivania/TESI/dati/MRI_DWI_nii/Patient02_AIM02/Patient02_AIM02_MR_2011-09-07_101859_Rm.cranioencefalo.con.m.d.c-_DWI.HR.E_n160__00000/-a.json'
-bvec_path = '/home/leonardo/Scrivania/TESI/dati/MRI_DWI_nii/Patient02_AIM02/Patient02_AIM02_MR_2011-09-07_101859_Rm.cranioencefalo.con.m.d.c-_DWI.HR.E_n160__00000/-a.bvec'
-bval_path = '/home/leonardo/Scrivania/TESI/dati/MRI_DWI_nii/Patient02_AIM02/Patient02_AIM02_MR_2011-09-07_101859_Rm.cranioencefalo.con.m.d.c-_DWI.HR.E_n160__00000/-a.bval'
+#json_path = '/home/leonardo/Scrivania/TESI/dati/MRI_DWI_nii/Patient02_AIM02/Patient02_AIM02_MR_2011-09-07_101859_Rm.cranioencefalo.con.m.d.c-_DWI.HR.E_n160__00000/-a.json'
+#bvec_path = '/home/leonardo/Scrivania/TESI/dati/MRI_DWI_nii/Patient02_AIM02/Patient02_AIM02_MR_2011-09-07_101859_Rm.cranioencefalo.con.m.d.c-_DWI.HR.E_n160__00000/-a.bvec'
+#bval_path = '/home/leonardo/Scrivania/TESI/dati/MRI_DWI_nii/Patient02_AIM02/Patient02_AIM02_MR_2011-09-07_101859_Rm.cranioencefalo.con.m.d.c-_DWI.HR.E_n160__00000/-a.bval'
+#
 
-
-#json_path = '/home/leonardo/Scrivania/MRI_DWI_nii/Patient02_AIM02/Patient02_AIM02_MR_2011-09-07_101859_Rm.cranioencefalo.con.m.d.c-_DWI.HR.E_n160__00000/-a.json'
-#bvec_path = '/home/leonardo/Scrivania/MRI_DWI_nii/Patient02_AIM02/Patient02_AIM02_MR_2011-09-07_101859_Rm.cranioencefalo.con.m.d.c-_DWI.HR.E_n160__00000/-a.bvec'
-#bval_path = '/home/leonardo/Scrivania/MRI_DWI_nii/Patient02_AIM02/Patient02_AIM02_MR_2011-09-07_101859_Rm.cranioencefalo.con.m.d.c-_DWI.HR.E_n160__00000/-a.bval'
+json_path = '/home/leonardo/Scrivania/MRI_DWI_nii/Patient02_AIM02/Patient02_AIM02_MR_2011-09-07_101859_Rm.cranioencefalo.con.m.d.c-_DWI.HR.E_n160__00000/-a.json'
+bvec_path = '/home/leonardo/Scrivania/MRI_DWI_nii/Patient02_AIM02/Patient02_AIM02_MR_2011-09-07_101859_Rm.cranioencefalo.con.m.d.c-_DWI.HR.E_n160__00000/-a.bvec'
+bval_path = '/home/leonardo/Scrivania/MRI_DWI_nii/Patient02_AIM02/Patient02_AIM02_MR_2011-09-07_101859_Rm.cranioencefalo.con.m.d.c-_DWI.HR.E_n160__00000/-a.bval'
 
 
 with open(json_path) as json_file:
     A = json.load(json_file)
+
+print(bval_path)
+print(bvec_path)
+print(json_path)
+
+    
+with open(json_path) as json_file:
+     print(json_path)
+     print(json_file)
+
+     A = json.load(json_file)
+
+
 
 
 B = np.loadtxt(bvec_path)
