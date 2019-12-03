@@ -51,7 +51,7 @@ def create_ct_paths(adc_list, ending):
 def create_txt(filename, bval_list):
     with open(filename, 'w') as file_:
         for bval in bval_list:
-            file_.write('{} \n'.format(bval))
+            file_.write("{} \n".format(bval))
 
 
 
@@ -65,7 +65,7 @@ if __name__ == "__main__":
     create_txt(ARGS.output, BVAL)
     
     
-#non sono sicuro che venaga mantenuto lo stesso ordine chiamando più volte la funzione create_list
+#non sono sicuro che venga mantenuto lo stesso ordine chiamando più volte la funzione create_list
     
     
     

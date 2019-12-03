@@ -10,7 +10,8 @@ import json
 import pandas as pd
 import os
 
-path_list = '/home/leonardo/Scrivania/Tab_FI/pr.lst'
+#path_list = '/home/leonardo/Scrivania/Tab_FI/pr.lst'
+path_list = '/home/leonardo/Scrivania/Tab_FI/tab_pr.lst'
 
 list_path = [line for line in open(path_list, 'r')]
 
@@ -28,10 +29,10 @@ for i in range(len(list_path)):
     print(json_path)
     print(name)
     
-    with open(json_path) as json_file:
-     print(json_path)
-     print(json_file)
-     A = json.load(json_file)
+#    with open(json_path) as json_file:
+#        print(json_path)
+#        print(json_file)
+    A = json.loads(json_path)
 
     interesting_keys = ['Manufacturer', 'ManufacturersModelName', 'ProtocolName']
     new_dict = {key : A[key] for key in interesting_keys}
