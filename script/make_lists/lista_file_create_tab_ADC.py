@@ -51,7 +51,7 @@ def create_ct_paths(adc_list, ending):
 def create_txt(filename, bval_list):
     with open(filename, 'w') as file_:
         for bval in bval_list:
-            file_.write("{} \n".format(bval))
+            file_.write("{}\n".format(bval))
 
 
 

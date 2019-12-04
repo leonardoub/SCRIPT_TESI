@@ -10,10 +10,14 @@ import json
 import pandas as pd
 import os
 
-#path_list = '/home/leonardo/Scrivania/Tab_FI/pr.lst'
-path_list = '/home/leonardo/Scrivania/Tab_FI/tab_pr.lst'
 
-list_path = [line for line in open(path_list, 'r')]
+path_list = '/home/leonardo/Scrivania/Tab_FI/pr.lst'
+#path_list = '/home/leonardo/Scrivania/Tab_FI/tab_pr.lst'
+
+
+list_path = [line.strip('\n') for line in open(path_list, 'r')]
+
+list_path.sort()
 
 D = {}
 
@@ -29,10 +33,10 @@ for i in range(len(list_path)):
     print(json_path)
     print(name)
     
-#    with open(json_path) as json_file:
-#        print(json_path)
-#        print(json_file)
-    A = json.loads(json_path)
+    with open(json_path) as json_file:
+        print(json_path)
+        print(json_file)
+        A = json.load(json_file)
 
     interesting_keys = ['Manufacturer', 'ManufacturersModelName', 'ProtocolName']
     new_dict = {key : A[key] for key in interesting_keys}
@@ -41,20 +45,31 @@ for i in range(len(list_path)):
     Bt = B.T
     sp = np.shape(Bt)[0]
     Bt_sp = np.vsplit(Bt, sp)
-    dict_bvec = {f'Direzione {i} bvec': Bt_sp[i] for i in range(sp)}
+    dict_bvec = {f'Direzione {i} bvec': str(Bt_sp[i]).strip('[').strip(']') for i in range(sp)}
 
 
     C = np.loadtxt(bval_path) 
     Ct = C.T
-    dict_bval = {'bval' : Ct}
+    dict_bval = {'bval' : str(Ct).strip('[').strip(']')}
 
         
     dict_patient = {**new_dict, **dict_bvec, **dict_bval}
     
-    bvec_keys = list(dict_bvec.keys())
+    if len(list(dict_bvec.keys())) > 4:
+        bvec_keys = list(dict_bvec.keys())
+        
     bval_keys = list(dict_bval.keys())
 
     D.update({name : dict_patient})
 
+l=interesting_keys+bvec_keys+bval_keys
+K=pd.DataFrame.from_dict(D, orient='index', columns=l)
 
-K=pd.DataFrame.from_dict(D, orient='index', columns=interesting_keys+bvec_keys+bval_keys)
+
+K.to_csv('/home/leonardo/Scrivania/Tab_FI/tab_complessive.csv', header=True)
+
+
+
+
+
+
