@@ -40,6 +40,11 @@ for i in A:
 
     D.update({patient : dict_selected_features})
     
+    
+    
+D['Patient23']['original_firstorder_Minimum']='355.987'
+D['Patient25']['original_firstorder_Minimum']='253.572'   
+
 K=pd.DataFrame.from_dict(D, orient='index', columns=interesting_features)
 
 
@@ -49,19 +54,59 @@ K.to_csv('/home/leonardo/Scrivania/Tab_FI/tab_selected_features_ADC.csv', header
 
 import matplotlib.pyplot as plt
 
-a=K.iloc[:,0]
-
 pt_list=[pt.replace('Patient', '') for pt in K.index]
+pt_list.sort()
+
+min_=K.iloc[:,0]
+list_min=list(min_)
+min_np=min_.to_numpy(dtype=float)
+plt.scatter(pt_list, min_np)
 
 
-plt.scatter(pt_list, a)
+max_=K.iloc[:,1]
+list_max=list(max_)
+max_np=max_.to_numpy(dtype=float)
+plt.scatter(pt_list, max_np, color='r')
+
 
 plt.xticks(pt_list, rotation=90)
+plt.yscale('log')
+plt.ylim(10**0, 10**6)
+
+for i in pt_list:
+    plt.axvline(x=i, linestyle=':', color='k')
+
+##########################################
+##########################################
+    
+plt.show()
+
+mean_=K.iloc[:,3]
+mean_np=mean_.to_numpy(dtype=float)
+#plt.scatter(pt_list, mean_np, color='r')
+
+var=K.iloc[:,-1]
+var_np=var.to_numpy(dtype=float)
+stdv_np=np.sqrt(var_np)
 
 
-y=[78,65,98,32,100,50,64]
+plt.errorbar(pt_list, mean_np, yerr=stdv_np/2, fmt='.')
+plt.xticks(pt_list, rotation=90)
 
-plt.scatter(np.arange(len(y)), y)
+############################################
+############################################
+
+plt.show()
+
+plt.errorbar(pt_list, (max_np+min_np)/2, yerr=(max_np-min_np)/2, fmt='.')
+plt.xticks(pt_list, rotation=90)
+
+#for i,j in enumerate(pt_list):
+#    plt.axvline(x=j, ymin=list_min[i], ymax=list_max[i])
+#    plt.axvline(x=j, ymin=0.2, ymax=0.8)
+#y=[78,65,98,32,100,50,64]
+#
+#plt.scatter(np.arange(len(y)), y)
 
 
 
