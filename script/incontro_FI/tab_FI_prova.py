@@ -63,9 +63,9 @@ bvec_keys = list(dict_bvec.keys())
 
 
 
-json_path_03 = '/home/leonardo/Scrivania/TESI/dati/MRI_DWI_nii/Patient03_AIM03/Patient03_AIM03_MR_2012-01-11_174451_Rm.cranioencefalo.con.m.d.c-_DWI.HR_n120__00000/-a.json'
-bvec_path_03 = '/home/leonardo/Scrivania/TESI/dati/MRI_DWI_nii/Patient03_AIM03/Patient03_AIM03_MR_2012-01-11_174451_Rm.cranioencefalo.con.m.d.c-_DWI.HR_n120__00000/-a.bvec'
-bval_path_03 = '/home/leonardo/Scrivania/TESI/dati/MRI_DWI_nii/Patient03_AIM03/Patient03_AIM03_MR_2012-01-11_174451_Rm.cranioencefalo.con.m.d.c-_DWI.HR_n120__00000/-a.bval'
+json_path_03 = '/home/leonardo/Scrivania/TESI/data/MRI_DWI_nii/Patient03_AIM03/Patient03_AIM03_MR_2012-01-11_174451_Rm.cranioencefalo.con.m.d.c-_DWI.HR_n120__00000/-a.json'
+bvec_path_03 = '/home/leonardo/Scrivania/TESI/data/MRI_DWI_nii/Patient03_AIM03/Patient03_AIM03_MR_2012-01-11_174451_Rm.cranioencefalo.con.m.d.c-_DWI.HR_n120__00000/-a.bvec'
+bval_path_03 = '/home/leonardo/Scrivania/TESI/data/MRI_DWI_nii/Patient03_AIM03/Patient03_AIM03_MR_2012-01-11_174451_Rm.cranioencefalo.con.m.d.c-_DWI.HR_n120__00000/-a.bval'
 
 
 #json_path_03 = '/home/leonardo/Scrivania/MRI_DWI_nii/Patient03_AIM03/Patient03_AIM03_MR_2012-01-11_174451_Rm.cranioencefalo.con.m.d.c-_DWI.HR_n120__00000/-a.json'
