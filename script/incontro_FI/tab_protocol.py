@@ -12,7 +12,7 @@ import json
 import pandas as pd
 import os
 
-path_list = '/home/leonardo/Scrivania/Tab_FI/pr.lst'
+path_list = '/home/leonardo/Scrivania/Tab_FI_2/pr.lst'
 #path_list = '/home/leonardo/Scrivania/Tab_FI/tab_pr.lst'
 
 list_path = [line.strip('\n') for line in open(path_list, 'r')]

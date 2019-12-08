@@ -12,16 +12,16 @@ import pandas as pd
 
 
 
-path = '/home/leonardo/Scrivania/ADC_features/C_bc100'
+path_folder_with_csv='/home/leonardo/Scrivania/TESI/features/ADC_features/C_bc100'
 
-file_list = os.listdir(path)
+file_list = os.listdir(path_folder_with_csv)
 
 file_list.sort()
 
 P = file_list[0]
 
 
-A = glob.glob(path+'/*')
+A = glob.glob(path_folder_with_csv+'/*')
 A.sort()
 
 

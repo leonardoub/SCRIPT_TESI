@@ -124,6 +124,7 @@ plt.title('Mean and Standard Deviation in ADC', fontsize=20, pad=10)
 ############################################
 ############################################
 
+
 plt.figure(figsize=(15,8))
 
 plt.errorbar(pt_list, (max_np+min_np)/2, yerr=(max_np-min_np)/2, fmt='.')
@@ -136,6 +137,12 @@ plt.ylabel(r'ADC [$mm^2/s$]', fontsize=15)
 plt.title('Median and Range in ADC', fontsize=20, pad=10)
 
 #plt.savefig('/home/leonardo/Scrivania/Tab_FI/Median_and_Range_in_ADC', bbox_inches='tight')
+
+############################################
+############################################
+
+
+
 
 
 
