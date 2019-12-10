@@ -12,8 +12,12 @@ import json
 import pandas as pd
 import os
 
-path_list = '/home/leonardo/Scrivania/Tab_FI_2/pr.lst'
-#path_list = '/home/leonardo/Scrivania/Tab_FI/tab_pr.lst'
+
+##PC mio
+#path_list = '/home/leonardo/Scrivania/Tab_FI_2/pr.lst'
+
+#PC INFN
+path_list = '/home/leonardo/Scrivania/Tab_FI/pr.lst'
 
 list_path = [line.strip('\n') for line in open(path_list, 'r')]
 
@@ -29,7 +33,7 @@ for i in range(len(list_path)):
     with open(json_path) as json_file:
         A = json.load(json_file)
 
-    interesting_keys = ['Manufacturer', 'ManufacturersModelName', 'ProtocolName', 'SeriesDescription', 'SliceThickness', 'SpacingBetweenSlices']
+    interesting_keys = ['Manufacturer', 'ManufacturersModelName', 'ProtocolName', 'SeriesDescription', 'SliceThickness', 'SpacingBetweenSlices', 'MagneticFieldStrength','ScanningSequence']
     new_dict = {key : A[key] for key in interesting_keys}
         
     D.update({name : new_dict})

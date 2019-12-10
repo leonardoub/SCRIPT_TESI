@@ -20,8 +20,14 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_sc
 from sklearn.decomposition import PCA
 from sklearn import preprocessing
 
-dataset_DOSE_path = '/home/leonardo/Scrivania/TESI/tabelle/ADC_DOSE/tab_outcome_bW1_classificazione.csv'
-dataset_ADC_path = '/home/leonardo/Scrivania/TESI/tabelle/ADC_DOSE/tab_outcome_C_bc_100_for_classification.csv'
+##PC mio
+#dataset_DOSE_path = '/home/leonardo/Scrivania/TESI/tabelle/ADC_DOSE/tab_outcome_bW1_classificazione.csv'
+#dataset_ADC_path = '/home/leonardo/Scrivania/TESI/tabelle/ADC_DOSE/tab_outcome_C_bc_100_for_classification.csv'
+
+#PC INFN
+dataset_DOSE_path = '/home/leonardo/Scrivania/classificazione/tabelle/ADC_DOSE/tab_outcome_bW1_classificazione.csv'
+dataset_ADC_path = '/home/leonardo/Scrivania/classificazione/tabelle/ADC_DOSE/tab_outcome_C_bc_100_for_classification.csv'
+
 
 def preprocess_DOSE(dataset_path):
     X_DOSE = pd.read_csv(dataset_path)
@@ -107,7 +113,7 @@ TOT_Y1_train = DOSE_Y1_train
 TOT_X_TEST_n_reduced = np.concatenate((DOSE_X_TEST_n_reduced, ADC_X_TEST_n_reduced), axis=1)
 TOT_Y_TEST = DOSE_Y_TEST 
                   
-clf=OneClassSVM(gamma='auto', nu=0.1)
+clf=OneClassSVM(kernel='poly', degree=2, gamma='auto', nu=0.5)
 
 clf.fit(TOT_X1_train_n_reduced)
 
